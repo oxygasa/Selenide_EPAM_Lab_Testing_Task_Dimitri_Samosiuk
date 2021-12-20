@@ -1,4 +1,5 @@
 package pages.google;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.base.BasePage;
@@ -9,8 +10,7 @@ public class GoogleMainPage extends BasePage {
         super(driver);
     }
 
-    public static final By addButton =By.xpath("//a[@id='create-entry']");
-    public static final By editableArea =By.xpath("//div[@id='editable']");
-    public static final By homeButton =By.xpath("//a[@id='back-to-overview']");
-
+    public static final By googleSearchBoxInput = By.name("q");
+    String searchBoxTextForInput = "белорусская железная дорога";
+    public static final By searchInGoogleSubmitButton = By.className("gNO89b");
 }

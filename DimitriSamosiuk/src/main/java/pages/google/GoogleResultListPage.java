@@ -9,8 +9,6 @@ public class GoogleResultListPage extends BasePage {
         super(driver);
     }
 
-    public static final By addButton =By.xpath("//a[@id='create-entry']");
-    public static final By editableArea =By.xpath("//div[@id='editable']");
-    public static final By homeButton =By.xpath("//a[@id='back-to-overview']");
+    public static final By searchResultTitleLinkList = By.className("LC20lb MBeuO DKV0Md");
 
 }

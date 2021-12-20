@@ -9,18 +9,9 @@ public class RwMainPage extends BasePage {
         super(driver);
     }
 
-    public String login = "6317985@mail.ru";
-    public String password = "123456qwerty";
-    public static final By loginInput = By.xpath(".//");
-    public static final By passwordInput = By.xpath(".//");
-    public static final By loginButton = By.xpath(".//");
+    
+    public static final By switchToEnglish = By.xpath("//a[contains(text(),'ENG')]");
 
-    public String getLogin(){
-        return login;
-    }
-    public String getPassword(){
-        return password;
-    }
     }
 
 
