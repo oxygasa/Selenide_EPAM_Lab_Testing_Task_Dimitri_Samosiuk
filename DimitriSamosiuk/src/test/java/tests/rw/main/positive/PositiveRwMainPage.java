@@ -1,12 +1,11 @@
+package tests.rw.main.positive;
+
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
-import pages.login.LoginPage;
 import tests.base.BaseTest;
-import static constants.Constant.Urls.LOGIN_PAGE_URL;
-import static pages.login.LoginPage.*;
 
 
-public class PositiveGoogleMainTest extends BaseTest {
+public class PositiveRwMainPage extends BaseTest {
 
     @Test(priority = 1)
     @Description("Verify the positive data input ends with successful logging into system")

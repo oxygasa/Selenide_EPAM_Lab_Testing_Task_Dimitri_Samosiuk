@@ -1,11 +1,11 @@
-package pages.login;
+package pages.rw.search;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pages.base.BasePage;
 
-public class RwMainPage extends BasePage {
+public class RwSearchPage extends BasePage {
 
-    public RwMainPage(WebDriver driver) {
+    public RwSearchPage(WebDriver driver) {
         super(driver);
     }
 

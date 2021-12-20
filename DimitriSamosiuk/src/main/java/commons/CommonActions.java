@@ -1,8 +1,7 @@
 package commons;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.opera.OperaDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
@@ -26,7 +25,7 @@ public class CommonActions {
                 driver = new FirefoxDriver();
                 break;
             case "INTERNET_EXPLORER_WINDOWS":
-                driver = new IEDriver();
+                driver = new InternetExplorerDriver();
             default:
                 Assert.fail("Incorrect browser name. Choose name of browser in src/main/java/commons/Config Browser name for now is: " + PLATFORM_AND_BROWSER);
         }
