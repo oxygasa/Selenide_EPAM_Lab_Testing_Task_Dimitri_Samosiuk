@@ -1,25 +1,28 @@
 package tests.google.main.positive;
 
+import constants.Constant;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
+import pages.google.GoogleMainPage;
+import pages.google.GoogleResultListPage;
 import tests.base.BaseTest;
 
 
 public class PositiveGoogleMainTest extends BaseTest {
 
-//    @Test(priority = 1)
-//    @Description("Verify the positive data input ends with successful logging into system")
-//    @Epic("EPAM001")
-//    @Feature("Login page")
-//    @Story("As user I want to login into system with my credentials")
-//    @Step("1. Type positive login credentials. 2. Type positive password credentials. 3. Click the 'Login' button")
-//    @Severity(SeverityLevel.CRITICAL)
-//
-//    public void checkIsLoginIsSuccessful() {
-//        LoginPage loginPage = new LoginPage(getDriver());
-//        loginPage.goToUrl(LOGIN_PAGE_URL);
-//        loginPage.find(loginInput).sendKeys(loginPage.getLogin());
-//        loginPage.find(passwordInput).sendKeys(loginPage.getPassword());
-//        loginPage.find(loginButton).click();
-//    }
+
+    @Test(priority = 3)
+    @Description("Verify the page opens from global web search service Google.")
+    @Epic("RW001")
+    @Feature("Main page")
+    @Story("As user I want to search a request \"белорусская железная дорога\" in a google.com and open the rw.by main page by clicking a " +
+            "search service redirect link.")
+    @Severity(SeverityLevel.TRIVIAL)
+
+    public void searchTheRwByMainPageUsingGoogleSearch() {
+        GoogleMainPage.goToUrl(Constant.Urls.GOOGLE_MAIN_PAGE_URL);
+        GoogleMainPage.typeText(GoogleMainPage.googleSearchBoxInput,GoogleMainPage.SEARCH_BOX_TEXT_FOR_INPUT);
+        GoogleMainPage.clickTheElement(GoogleMainPage.searchInGoogleSubmitButton);
+        GoogleResultListPage.clickTheElement(GoogleResultListPage.searchResultTitleLinkList);
+    }
 }

@@ -1,8 +1,8 @@
 package pages.base;
 
+import commons.CommonActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import static constants.Constant.TimeoutVariables.EXPLICIT_WAIT;
@@ -21,15 +21,27 @@ public class BasePage {
     /**
      * The method to navigate to specific url address.
      **/
-    public void goToUrl(String url) {
-        driver.get(url);
+    public static void goToUrl(String url) {
+        CommonActions.getDriver().get(url);
     }
 
     /**
-     * The method to find element By locator.
+     * The method is to find element By locator.
      **/
-    public WebElement find(By locator){
-        return driver.findElement(locator);
+    public static void find(By locator){
+        CommonActions.getDriver().findElement(locator);
+    }
+    /**
+     * The method is to find element By locator and type text into it.
+     **/
+    public static void typeText(By locator, String anyTextForInput) {
+        CommonActions.getDriver().findElement(locator).sendKeys(anyTextForInput);
+    }
+    /**
+     * The method is to find element By locator and click it.
+     **/
+    public static void clickTheElement(By locator){
+        CommonActions.getDriver().findElement(locator).click();
     }
 
     /**

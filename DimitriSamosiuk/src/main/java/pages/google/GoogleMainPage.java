@@ -6,11 +6,12 @@ import pages.base.BasePage;
 
 public class GoogleMainPage extends BasePage {
 
+
+
     public GoogleMainPage(WebDriver driver) {
         super(driver);
     }
-
+    public static final String SEARCH_BOX_TEXT_FOR_INPUT = "белорусская железная дорога";
     public static final By googleSearchBoxInput = By.name("q");
-    String searchBoxTextForInput = "белорусская железная дорога";
     public static final By searchInGoogleSubmitButton = By.className("gNO89b");
 }
