@@ -1,10 +1,10 @@
 package commons;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import java.util.concurrent.TimeUnit;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import java.util.concurrent.TimeUnit;
 import static commons.Config.PLATFORM_AND_BROWSER;
 import static constants.Constant.TimeoutVariables.IMPLICIT_WAIT;
 

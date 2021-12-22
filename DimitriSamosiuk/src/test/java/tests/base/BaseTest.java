@@ -12,8 +12,10 @@ import pages.base.BasePage;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
-import static commons.Config.*;
-
+import static commons.Config.CLEAR_TEST_REPORT_AND_SCREENSHOT_DIRECTORY;
+import static commons.Config.CLEAR_COOKIES;
+import static commons.Config.MAKE_SCREENSHOT_FOR_ALLURE;
+import static commons.Config.HOLD_BROWSER_OPEN;
 public class BaseTest extends BasePage {
     WebDriver driver;
 
