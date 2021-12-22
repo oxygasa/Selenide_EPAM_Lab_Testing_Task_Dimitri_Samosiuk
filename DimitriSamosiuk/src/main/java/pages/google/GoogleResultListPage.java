@@ -9,6 +9,6 @@ public class GoogleResultListPage extends BasePage {
         super(driver);
     }
 
-    public static final By searchResultTitleLinkList = By.className("LC20lb MBeuO DKV0Md");
+    public static final By searchResultTitleLinkList = By.xpath("//h3[contains(@class,'LC20lb')]/../..");
 
 }

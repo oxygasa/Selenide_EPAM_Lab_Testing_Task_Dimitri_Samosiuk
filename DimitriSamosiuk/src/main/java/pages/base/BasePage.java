@@ -5,7 +5,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
 import static constants.Constant.TimeoutVariables.EXPLICIT_WAIT;
+import static constants.Constant.TimeoutVariables.IMPLICIT_WAIT;
 
 public class BasePage {
 
@@ -46,9 +49,14 @@ public class BasePage {
 
     /**
      * Wait for visibility element in DOM model.
-     **/
-    public void waitElement(By locator){
-        WebDriverWait wait = new WebDriverWait(driver, EXPLICIT_WAIT);
+     *
+     * @return*/
+    public static void waitElement(By locator){
+        WebDriverWait wait = new WebDriverWait(CommonActions.getDriver(), EXPLICIT_WAIT);
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+    public static void assertElementIsDisplayed(By locator){
+        boolean isDisplayed = CommonActions.getDriver().findElement(locator).isDisplayed();
+         Assert.assertTrue(isDisplayed);
     }
 }
