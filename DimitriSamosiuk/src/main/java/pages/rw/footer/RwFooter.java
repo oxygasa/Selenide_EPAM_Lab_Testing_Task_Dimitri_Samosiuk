@@ -15,8 +15,7 @@ public class RwFooter extends BasePage {
     java.util.Calendar CalendarForCopyright = java.util.Calendar.getInstance();
     SimpleDateFormat dateFormatYyyy = new SimpleDateFormat("yyyy");
     String expectedYearOfCopyright = dateFormatYyyy.format(CalendarForCopyright.getTime());
-    String expectedCopyrightText = "© "+expectedYearOfCopyright+" Belarusian Railway";
-    return expectedCopyrightText;
+        return "© "+expectedYearOfCopyright+" Belarusian Railway";
     }
 
     public RwFooter(WebDriver driver) {

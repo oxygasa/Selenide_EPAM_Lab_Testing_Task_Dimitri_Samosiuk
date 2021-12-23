@@ -52,7 +52,7 @@ public class BasePage {
      * The method is to find element By locator and click it.
      **/
     public static void clickTheElement(By locator){
-        getDriver().findElement(locator).click();
+        CommonActions.getDriver().findElement(locator).click();
     }
 
     /*** Wait for visibility element in DOM model.*/

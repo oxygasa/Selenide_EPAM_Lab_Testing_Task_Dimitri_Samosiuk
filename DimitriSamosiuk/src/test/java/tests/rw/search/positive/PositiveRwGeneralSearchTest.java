@@ -8,19 +8,16 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.rw.header.RwHeader;
 import pages.rw.main.RwMainPage;
-import pages.rw.search_result_list.RwGeneralSearchResultListPage;
+import pages.rw.train_result.RwGeneralSearchResultListPage;
 import tests.base.BaseTest;
-
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
 
-public class PositiveRwSearchTest extends BaseTest {
+public class PositiveRwGeneralSearchTest extends BaseTest {
 
     @Test(priority = 2)
     @Description("Requirements: https://clck.ru/ZXihb")
@@ -47,7 +44,7 @@ public class PositiveRwSearchTest extends BaseTest {
 
     @Test(priority = 2)
     @Description("Requirements: https://clck.ru/ZXihb")
-    @Epic("RW006")
+    @Epic("RW007")
     @Feature("General search text box")
     @Story("As a user I want to search the information from informational sections (for example %CITY_NAME%) so" +
             " I need to do it via general search text box.")
