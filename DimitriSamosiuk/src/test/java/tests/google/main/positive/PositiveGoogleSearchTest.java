@@ -7,6 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.google.GoogleMainPage;
 import pages.google.GoogleResultListPage;
+import pages.rw.footer.RwFooter;
 import pages.rw.main.RwMainPage;
 import tests.base.BaseTest;
 
