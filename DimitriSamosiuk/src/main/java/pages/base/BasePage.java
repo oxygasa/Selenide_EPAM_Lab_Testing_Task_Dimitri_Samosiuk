@@ -40,8 +40,7 @@ public class BasePage {
      * The method is to find element By locator.
      **/
     public static WebElement find(By locator){
-        WebElement element = getDriver().findElement(locator);
-        return element;
+        return getDriver().findElement(locator);
     }
     /**
      * The method is to find element By locator and type text into it.

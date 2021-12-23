@@ -3,6 +3,7 @@ package tests.rw.search.positive;
 import commons.CommonActions;
 import constants.Constant;
 import io.qameta.allure.*;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.rw.header.RwHeader;
@@ -13,6 +14,10 @@ import tests.base.BaseTest;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 
 public class PositiveRwSearchTest extends BaseTest {
@@ -33,10 +38,10 @@ public class PositiveRwSearchTest extends BaseTest {
             String actualUriOfGeneralSearchResultPage = CommonActions.getDriver().getCurrentUrl();
             String cuttedUriThreeLastCharacters = actualUriOfGeneralSearchResultPage.substring(actualUriOfGeneralSearchResultPage.length() - 1);
             String actualCharacterNumberParse = String.valueOf(cuttedUriThreeLastCharacters);
-            actualCharacterNumberParse = URLEncoder.encode(actualCharacterNumberParse,StandardCharsets.UTF_8);
-            RwGeneralSearchResultListPage.RANDOM_SYMBOLS_LIST[i] = URLEncoder.encode(RwGeneralSearchResultListPage.RANDOM_SYMBOLS_LIST[i],StandardCharsets.UTF_8);
-            String expectedCharacterNumberParse = RwGeneralSearchResultListPage.RANDOM_SYMBOLS_LIST[i].substring(RwGeneralSearchResultListPage.RANDOM_SYMBOLS_LIST[i].length()- 1);
-            Assert.assertEquals(actualCharacterNumberParse,expectedCharacterNumberParse);
+            actualCharacterNumberParse = URLEncoder.encode(actualCharacterNumberParse, StandardCharsets.UTF_8);
+            RwGeneralSearchResultListPage.RANDOM_SYMBOLS_LIST[i] = URLEncoder.encode(RwGeneralSearchResultListPage.RANDOM_SYMBOLS_LIST[i], StandardCharsets.UTF_8);
+            String expectedCharacterNumberParse = RwGeneralSearchResultListPage.RANDOM_SYMBOLS_LIST[i].substring(RwGeneralSearchResultListPage.RANDOM_SYMBOLS_LIST[i].length() - 1);
+            Assert.assertEquals(actualCharacterNumberParse, expectedCharacterNumberParse);
         }
     }
 
@@ -57,5 +62,15 @@ public class PositiveRwSearchTest extends BaseTest {
         String cuttedUriToLastWordsAccordingToSearch = actualUriOfGeneralSearchResultPage.
                 substring(actualUriOfGeneralSearchResultPage.length() - RwGeneralSearchResultListPage.CITY_TEXT_VALUE.length());
         Assert.assertEquals(cuttedUriToLastWordsAccordingToSearch, RwGeneralSearchResultListPage.CITY_TEXT_VALUE);
+        RwGeneralSearchResultListPage.assertElementsAreDisplayed(RwGeneralSearchResultListPage.GENERAL_SEARCH_RESULT_PREVIEW_TITLE_LIST);
+
+/** Requirement: Print in the console prompt the list of elements text.*/
+        List<WebElement> allTitlesToConsole = CommonActions.getDriver().findElements(RwGeneralSearchResultListPage.GENERAL_SEARCH_RESULT_PREVIEW_TITLE_LIST);
+        Iterator<WebElement> itr = allTitlesToConsole.iterator();
+        while(itr.hasNext()) {
+            System.out.println(itr.next().getText());
+            System.out.println("-------------");
+        }
     }
 }
+
