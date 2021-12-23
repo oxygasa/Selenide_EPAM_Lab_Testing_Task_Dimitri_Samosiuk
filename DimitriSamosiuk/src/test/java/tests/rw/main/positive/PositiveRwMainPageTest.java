@@ -1,13 +1,20 @@
 package tests.rw.main.positive;
 
+import commons.CommonActions;
 import constants.Constant;
 import io.qameta.allure.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.rw.footer.RwFooter;
+import pages.rw.header.RwHeader;
 import pages.rw.main.RwMainPage;
 import tests.base.BaseTest;
+
+import java.util.Iterator;
+import java.util.List;
 
 
 public class PositiveRwMainPageTest extends BaseTest {
@@ -20,7 +27,7 @@ public class PositiveRwMainPageTest extends BaseTest {
             "so let all elements will be presented in English.")
     @Severity(SeverityLevel.NORMAL)
 
-    public void switchToEnglish() {
+    public void switchToEnglishLanguageTest() {
         RwMainPage.goToUrl(Constant.Urls.BELARUS_RAILWAY_NAIN_PAGE_URL);
         RwMainPage.clickTheElement(RwMainPage.switchToEnglish);
     }
@@ -32,7 +39,7 @@ public class PositiveRwMainPageTest extends BaseTest {
     @Story("The count of news in block must be more than constant.")
     @Severity(SeverityLevel.TRIVIAL)
 
-    public void countTheEnglishNewsBlockList() {
+    public void countTheEnglishNewsBlockListTest() {
         RwMainPage.checkTheNewsCountIsEqualOrHigherThanConstant(RwMainPage.mainPageNewsModuleWithNewsList);
     }
 
@@ -40,11 +47,27 @@ public class PositiveRwMainPageTest extends BaseTest {
     @Description("Requirements: https://clck.ru/ZXihb")
     @Epic("RW004")
     @Feature("Footer")
-    @Story("The copyright text must be '© YEAR Belarusian Railway'.")
+    @Story("The copyright text must be '© %CURRENT_YEAR% Belarusian Railway'.")
     @Severity(SeverityLevel.TRIVIAL)
 
-    public void checkTheEnglishCopyrightText() {
+    public void checkTheEnglishCopyrightTextTest() {
         String actualTextOfCopyrightElement = find(RwFooter.copyrightOnTheFooter).getText();
-        Assert.assertEquals((actualTextOfCopyrightElement.substring(0,25)),RwFooter.getExpectedTextOfCopyright());
+        Assert.assertEquals((actualTextOfCopyrightElement.substring(0, 25)), RwFooter.getExpectedTextOfCopyright());
+    }
+
+    @Test(priority = 2)
+    @Description("Requirements: https://clck.ru/ZXihb")
+    @Epic("RW005")
+    @Feature("Header")
+    @Story("As user I want to navigate over the webservice, So as a map I need following buttons: " +
+            "'Press Center', 'Timetable', 'Passenger', 'Services', 'Freight', 'Corporate'")
+    @Severity(SeverityLevel.TRIVIAL)
+
+    public void checkTheNavigationHeaderBarElementsTest() {
+        List<WebElement> elements = CommonActions.getDriver().findElements(RwHeader.headerButtonList);
+        boolean aretheNavigationHeaderBarElementsDisplayed = false;
+
+        //stopped here
+        Assert.assertTrue(aretheNavigationHeaderBarElementsDisplayed);
     }
 }

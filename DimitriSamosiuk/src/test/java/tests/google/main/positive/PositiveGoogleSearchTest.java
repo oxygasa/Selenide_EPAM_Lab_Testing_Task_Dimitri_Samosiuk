@@ -23,7 +23,7 @@ public class PositiveGoogleSearchTest extends BaseTest {
             "So I want to do it via 3rd party web search service - Google.")
     @Severity(SeverityLevel.TRIVIAL)
 
-    public void searchTheRwByMainPageUsingGoogleSearch() {
+    public void searchTheRwByMainPageUsingGoogleSearchTest() {
         GoogleMainPage.goToUrl(Constant.Urls.GOOGLE_MAIN_PAGE_URL);
         GoogleMainPage.typeText(GoogleMainPage.googleSearchBoxInput, GoogleMainPage.SEARCH_BOX_TEXT_FOR_INPUT);
         GoogleMainPage.clickTheElement(GoogleMainPage.searchInGoogleSubmitButton);
