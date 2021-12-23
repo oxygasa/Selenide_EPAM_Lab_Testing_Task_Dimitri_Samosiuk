@@ -2,20 +2,13 @@ package pages.base;
 
 import commons.CommonActions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-
-import java.time.Duration;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
-
 import static commons.CommonActions.getDriver;
-import static constants.Constant.TimeoutVariables.EXPLICIT_WAIT;
 import static constants.Constant.TimeoutVariables.IMPLICIT_WAIT;
 
 public class BasePage {

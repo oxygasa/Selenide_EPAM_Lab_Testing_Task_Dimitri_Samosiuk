@@ -25,6 +25,6 @@ public class PositiveGoogleSearchTest extends BaseTest {
         GoogleMainPage.typeText(GoogleMainPage.GOOGLE_SEARCH_BOX_INPUT, GoogleMainPage.SEARCH_BOX_TEXT_FOR_INPUT);
         GoogleMainPage.clickTheElement(GoogleMainPage.SEARCH_IN_GOOGLE_SUBMIT_BUTTON);
         GoogleResultListPage.clickTheElement(GoogleResultListPage.SEARCH_RESULT_TITLE_LINK_LIST);
-        RwMainPage.assertElementIsDisplayed(RwMainPage.SWITCH_TO_ENGLISH);
+        RwMainPage.assertElementIsDisplayed(RwMainPage.TRAIN_SEARCH_TEXT_FIELD_FROM);
     }
 }

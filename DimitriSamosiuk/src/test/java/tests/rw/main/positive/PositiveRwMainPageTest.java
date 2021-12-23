@@ -22,7 +22,7 @@ public class PositiveRwMainPageTest extends BaseTest {
 
     public void switchToEnglishLanguageTest() {
         RwMainPage.goToUrl(Constant.Urls.BELARUS_RAILWAY_NAIN_PAGE_URL);
-        RwMainPage.clickTheElement(RwMainPage.SWITCH_TO_ENGLISH);
+        RwMainPage.clickTheElement(RwHeader.SWITCH_TO_ENGLISH);
     }
 
     @Test(priority = 3)

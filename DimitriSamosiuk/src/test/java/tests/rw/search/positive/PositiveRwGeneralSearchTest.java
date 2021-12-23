@@ -66,7 +66,6 @@ public class PositiveRwGeneralSearchTest extends BaseTest {
         Iterator<WebElement> itr = allTitlesToConsole.iterator();
         while(itr.hasNext()) {
             System.out.println(itr.next().getText());
-            System.out.println("-------------");
         }
     }
 }
