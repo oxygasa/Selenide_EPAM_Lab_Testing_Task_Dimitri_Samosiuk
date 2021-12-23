@@ -63,10 +63,16 @@ public class BasePage {
     }
     /*** Assert the element is actually displayed.*/
     public static void assertElementIsDisplayed(By locator){
-        boolean isDisplayed = getDriver().findElement(locator).isDisplayed();
-         Assert.assertTrue(isDisplayed);
+         Assert.assertTrue(getDriver().findElement(locator).isDisplayed());
     }
 
+    /***Assert the list of elements are actually displayed.*/
+    public static void assertElementsAreDisplayed(By locator) {
+        List<WebElement> allElements = CommonActions.getDriver().findElements(locator);
+        for (WebElement element : allElements) {
+            Assert.assertTrue(element.isDisplayed());
+        }
+    }
     /*** Assert the element contains text*/
     public static void assertElementContainsText(By locator, String textForAssert){
         WebElement element = CommonActions.getDriver().findElement(locator);

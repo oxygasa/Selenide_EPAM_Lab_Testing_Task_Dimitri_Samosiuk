@@ -2,12 +2,9 @@ package tests.google.main.positive;
 
 import constants.Constant;
 import io.qameta.allure.*;
-import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.google.GoogleMainPage;
 import pages.google.GoogleResultListPage;
-import pages.rw.footer.RwFooter;
 import pages.rw.main.RwMainPage;
 import tests.base.BaseTest;
 
@@ -25,9 +22,9 @@ public class PositiveGoogleSearchTest extends BaseTest {
 
     public void searchTheRwByMainPageUsingGoogleSearchTest() {
         GoogleMainPage.goToUrl(Constant.Urls.GOOGLE_MAIN_PAGE_URL);
-        GoogleMainPage.typeText(GoogleMainPage.googleSearchBoxInput, GoogleMainPage.SEARCH_BOX_TEXT_FOR_INPUT);
-        GoogleMainPage.clickTheElement(GoogleMainPage.searchInGoogleSubmitButton);
-        GoogleResultListPage.clickTheElement(GoogleResultListPage.searchResultTitleLinkList);
-        RwMainPage.assertElementIsDisplayed(RwMainPage.switchToEnglish);
+        GoogleMainPage.typeText(GoogleMainPage.GOOGLE_SEARCH_BOX_INPUT, GoogleMainPage.SEARCH_BOX_TEXT_FOR_INPUT);
+        GoogleMainPage.clickTheElement(GoogleMainPage.SEARCH_IN_GOOGLE_SUBMIT_BUTTON);
+        GoogleResultListPage.clickTheElement(GoogleResultListPage.SEARCH_RESULT_TITLE_LINK_LIST);
+        RwMainPage.assertElementIsDisplayed(RwMainPage.SWITCH_TO_ENGLISH);
     }
 }

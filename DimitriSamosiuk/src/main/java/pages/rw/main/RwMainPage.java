@@ -17,11 +17,11 @@ public class RwMainPage extends BasePage {
     public RwMainPage(WebDriver driver) {
         super(driver);
     }
-    public static final By switchToEnglish = By.xpath("//a[contains(text(),'ENG')]");
-    public static final By trainSearchTextFieldFrom = By.id("acFrom");
-    public static final By trainSearchTextFieldTo = By.id("acTo");
-    public static final By trainSearchSubmitButton = By.xpath("//span[@class='std-button']//input[@type='submit']");
-    public static final List<WebElement> mainPageNewsModuleWithNewsList = CommonActions.getDriver().findElements(By.xpath("//dt[contains(@id,'bx_1373509569')]"));
+    public static final By SWITCH_TO_ENGLISH = By.xpath("//a[contains(text(),'ENG')]");
+    public static final By TRAIN_SEARCH_TEXT_FIELD_FROM = By.id("acFrom");
+    public static final By TRAIN_SEARCH_TEXT_FIELD_TO = By.id("acTo");
+    public static final By TRAIN_SEARCH_SUBMIT_BUTTON = By.xpath("//span[@class='std-button']//input[@type='submit']");
+    public static final List<WebElement> MAIN_PAGE_NEWS_MODULE_WITH_NEWS_LIST = CommonActions.getDriver().findElements(By.xpath("//dt[contains(@id,'bx_1373509569')]"));
 
     public static boolean checkTheNewsCountIsEqualOrHigherThanConstant(List<WebElement> elements){
         return elements.size() > Constant.RwMainPageConstants.COUNT_OF_PRESENTED_NEWS_ON_MAIN_PAGE;

@@ -1,20 +1,13 @@
 package tests.rw.main.positive;
 
-import commons.CommonActions;
 import constants.Constant;
 import io.qameta.allure.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.rw.footer.RwFooter;
 import pages.rw.header.RwHeader;
 import pages.rw.main.RwMainPage;
 import tests.base.BaseTest;
-
-import java.util.Iterator;
-import java.util.List;
 
 
 public class PositiveRwMainPageTest extends BaseTest {
@@ -29,7 +22,7 @@ public class PositiveRwMainPageTest extends BaseTest {
 
     public void switchToEnglishLanguageTest() {
         RwMainPage.goToUrl(Constant.Urls.BELARUS_RAILWAY_NAIN_PAGE_URL);
-        RwMainPage.clickTheElement(RwMainPage.switchToEnglish);
+        RwMainPage.clickTheElement(RwMainPage.SWITCH_TO_ENGLISH);
     }
 
     @Test(priority = 3)
@@ -40,7 +33,7 @@ public class PositiveRwMainPageTest extends BaseTest {
     @Severity(SeverityLevel.TRIVIAL)
 
     public void countTheEnglishNewsBlockListTest() {
-        RwMainPage.checkTheNewsCountIsEqualOrHigherThanConstant(RwMainPage.mainPageNewsModuleWithNewsList);
+        RwMainPage.checkTheNewsCountIsEqualOrHigherThanConstant(RwMainPage.MAIN_PAGE_NEWS_MODULE_WITH_NEWS_LIST);
     }
 
     @Test(priority = 3)
@@ -51,7 +44,7 @@ public class PositiveRwMainPageTest extends BaseTest {
     @Severity(SeverityLevel.TRIVIAL)
 
     public void checkTheEnglishCopyrightTextTest() {
-        String actualTextOfCopyrightElement = find(RwFooter.copyrightOnTheFooter).getText();
+        String actualTextOfCopyrightElement = find(RwFooter.COPYRIGHT_ON_THE_FOOTER).getText();
         Assert.assertEquals((actualTextOfCopyrightElement.substring(0, 25)), RwFooter.getExpectedTextOfCopyright());
     }
 
@@ -61,13 +54,9 @@ public class PositiveRwMainPageTest extends BaseTest {
     @Feature("Header")
     @Story("As user I want to navigate over the webservice, So as a map I need following buttons: " +
             "'Press Center', 'Timetable', 'Passenger', 'Services', 'Freight', 'Corporate'")
-    @Severity(SeverityLevel.TRIVIAL)
+    @Severity(SeverityLevel.NORMAL)
 
     public void checkTheNavigationHeaderBarElementsTest() {
-        List<WebElement> elements = CommonActions.getDriver().findElements(RwHeader.headerButtonList);
-        boolean aretheNavigationHeaderBarElementsDisplayed = false;
-
-        //stopped here
-        Assert.assertTrue(aretheNavigationHeaderBarElementsDisplayed);
+        assertElementsAreDisplayed(RwHeader.HEADER_BUTTON_LIST);
     }
 }

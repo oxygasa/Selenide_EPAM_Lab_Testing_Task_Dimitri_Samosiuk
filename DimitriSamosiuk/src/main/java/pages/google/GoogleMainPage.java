@@ -12,6 +12,6 @@ public class GoogleMainPage extends BasePage {
         super(driver);
     }
     public static final String SEARCH_BOX_TEXT_FOR_INPUT = "белорусская железная дорога";
-    public static final By googleSearchBoxInput = By.name("q");
-    public static final By searchInGoogleSubmitButton = By.className("gNO89b");
+    public static final By GOOGLE_SEARCH_BOX_INPUT = By.name("q");
+    public static final By SEARCH_IN_GOOGLE_SUBMIT_BUTTON = By.className("gNO89b");
 }

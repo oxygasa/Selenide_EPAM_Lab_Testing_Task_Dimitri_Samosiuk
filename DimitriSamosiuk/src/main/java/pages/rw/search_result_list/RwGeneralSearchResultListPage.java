@@ -8,8 +8,8 @@ public class RwGeneralSearchResultListPage extends BasePage {
     public RwGeneralSearchResultListPage(WebDriver driver) {
         super(driver);
     }
-    public static final By newsBlockList = By.xpath("//div[@class='index-news-list']//dt");
-    public static final By generalSearchResultPreviewTitleList = By.xpath("//li//div[@class='search-preview']/preceding-sibling::h3/a");
-    public static final String[] randomSymbolsList = {"!","@","#","$","%","^","&","*","(",")","-","_","+","=","'","{","}","\"",":",";"};
-    public static final String cityTextValue = "Санкт-Петербург";
+    public static final By NEWS_BLOCK_LIST = By.xpath("//div[@class='index-news-list']//dt");
+    public static final By GENERAL_SEARCH_RESULT_PREVIEW_TITLE_LIST = By.xpath("//li//div[@class='search-preview']/preceding-sibling::h3/a");
+    public static final String[] RANDOM_SYMBOLS_LIST = {"!","@","#","$","%","^","&","*","(",")","-","_","+","=",">","{","}","\"",":",";"};
+    public static String CITY_TEXT_VALUE = "Санкт-Петербург";
 }
