@@ -15,6 +15,9 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PositiveRwTrainSearchTest extends BaseTest {
+    RwMainPage rwMainPage = new RwMainPage(getDriver());
+    RwTrainSearchResultListPage rwTrainSearchResultListPage = new RwTrainSearchResultListPage(getDriver());
+    RwHeader rwHeader = new RwHeader(getDriver());
     @Test(priority = 1)
     @Description("Requirements: https://clck.ru/ZXihb")
     @Epic("RW008")
@@ -24,14 +27,22 @@ public class PositiveRwTrainSearchTest extends BaseTest {
     @Severity(SeverityLevel.CRITICAL)
 
     public void searchTheTrainRouteTest() {
-        RwMainPage.goToUrl(Constant.Urls.BELARUS_RAILWAY_NAIN_PAGE_URL);
-        RwMainPage.typeText(RwMainPage.TRAIN_SEARCH_TEXT_FIELD_FROM, RwMainPage.CITY_DEPARTURE_FROM);
-        RwMainPage.typeText(RwMainPage.TRAIN_SEARCH_TEXT_FIELD_TO, RwMainPage.CITY_ARRIVE_TO);
-        RwMainPage.typeText(RwMainPage.TRAIN_SEARCH_DATE_FIELD, RwMainPage.getFiveDaysAfterTodayDate());
-        RwMainPage.clickTheElement(RwMainPage.TRAIN_SEARCH_SUBMIT_BUTTON);
+        rwMainPage.
+                goToUrl(Constant.Urls.BELARUS_RAILWAY_NAIN_PAGE_URL);
+        rwMainPage.
+                typeText(rwMainPage.getTrainSearchTextFieldFrom(), rwMainPage.getCityDepartureFrom());
+        rwMainPage.
+                typeText(rwMainPage.getTrainSearchTextFieldTo(), rwMainPage.getCityArriveTo());
+        rwMainPage.
+                typeText(rwMainPage.getTrainSearchDateField(), RwMainPage.getFiveDaysAfterTodayDate());
+        rwMainPage.
+                clickTheElement(rwMainPage.getTrainSearchSubmitButton());
 
-        List<WebElement> allTrainsToConsole = CommonActions.getDriver().findElements(RwTrainSearchResultListPage.TRAIN_ROUTE_LIST_PAGE_TRAIN_ROUTE_TITLE);
-        List<WebElement> allTimeToConsole = CommonActions.getDriver().findElements(RwTrainSearchResultListPage.TRAIN_ROUTE_LIST_PAGE_ROUTE_TIME);
+        /*** Display all tains in the console prompt**/
+        List<WebElement> allTrainsToConsole =
+                CommonActions.getDriver().findElements(rwTrainSearchResultListPage.getTrainRouteListPageTrainRouteTitle());
+        List<WebElement> allTimeToConsole =
+                CommonActions.getDriver().findElements(rwTrainSearchResultListPage.getTrainRouteListPageRouteTime());
         List<String> allTrainsCollection = new ArrayList<>();
         List<String> allTimeCollection = new ArrayList<>();
         for (WebElement eachElement : allTrainsToConsole) {
@@ -48,10 +59,14 @@ public class PositiveRwTrainSearchTest extends BaseTest {
         }
         System.out.println(Arrays.toString(displayAllTrainsAndTime));
 
-        RwTrainSearchResultListPage.clickTheElement(RwTrainSearchResultListPage.TRAIN_ROUTE_LIST_PAGE_TRAIN_ROUTE_TITLE);
-        RwTrainSearchResultListPage.assertElementIsDisplayed(RwTrainSearchResultListPage.TRAIN_ROUTE_PREVIEW_PAGE_TRAIN_ROUTE_TITLE);
-        Assert.assertNotNull(RwTrainSearchResultListPage.TRAIN_ROUTE_PREVIEW_PAGE_DAYS_OF_ROUTE);
-        RwMainPage.clickTheElement(RwHeader.RW_COMPANY_LOGO);
-        RwMainPage.assertElementIsDisplayed(RwMainPage.TRAIN_SEARSH_TEXT_FIELD_FROM_AFTER_CLICK_ON_LOGO);
+        rwTrainSearchResultListPage.
+                clickTheElement(rwTrainSearchResultListPage.getTrainRouteListPageTrainRouteTitle());
+        rwTrainSearchResultListPage.
+                assertElementIsDisplayed(rwTrainSearchResultListPage.getTrainRoutePreviewPageTrainRouteTitle());
+        Assert.assertNotNull(rwTrainSearchResultListPage.getTrainRoutePreviewPageDaysOfRoute());
+        rwMainPage.
+                clickTheElement(rwHeader.getRwCompanyLogo());
+        rwMainPage.
+                assertElementIsDisplayed(rwMainPage.getTrainSearshTextFieldFromAfterClickOnLogo());
     }
 }

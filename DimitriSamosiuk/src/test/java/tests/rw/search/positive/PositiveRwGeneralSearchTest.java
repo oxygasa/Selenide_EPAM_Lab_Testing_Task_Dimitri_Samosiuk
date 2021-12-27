@@ -18,6 +18,9 @@ import java.util.List;
 
 
 public class PositiveRwGeneralSearchTest extends BaseTest {
+    RwMainPage rwMainPage = new RwMainPage(getDriver());
+    RwHeader rwHeader = new RwHeader(getDriver());
+    RwGeneralSearchResultListPage rwGeneralSearchResultListPage = new RwGeneralSearchResultListPage(getDriver());
 
     @Test(priority = 2)
     @Description("Requirements: https://clck.ru/ZXihb")
@@ -29,9 +32,9 @@ public class PositiveRwGeneralSearchTest extends BaseTest {
 
     public void checkingReactionOnInputCharacters() throws UnsupportedEncodingException {
         for (int i = 0; i < RwGeneralSearchResultListPage.RANDOM_SYMBOLS_LIST.length; i++) {
-            RwMainPage.goToUrl(Constant.Urls.BELARUS_RAILWAY_NAIN_PAGE_URL);
-            RwHeader.typeText(RwHeader.HEADER_SEARCH_BOX, RwGeneralSearchResultListPage.RANDOM_SYMBOLS_LIST[i]);
-            RwHeader.clickTheElement(RwHeader.HEADER_SEARCH_SUBMIT_BUTTON);
+            rwMainPage.goToUrl(Constant.Urls.BELARUS_RAILWAY_NAIN_PAGE_URL);
+            rwHeader.typeText(rwHeader.getHeaderSearchBox(), RwGeneralSearchResultListPage.RANDOM_SYMBOLS_LIST[i]);
+            rwHeader.clickTheElement(rwHeader.getHeaderSearchSubmitButton());
             String actualUriOfGeneralSearchResultPage = CommonActions.getDriver().getCurrentUrl();
             String cuttedUriThreeLastCharacters = actualUriOfGeneralSearchResultPage.substring(actualUriOfGeneralSearchResultPage.length() - 1);
             String actualCharacterNumberParse = String.valueOf(cuttedUriThreeLastCharacters);
@@ -51,21 +54,25 @@ public class PositiveRwGeneralSearchTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
 
     public void checkingReactionOnStringInput() {
-        RwMainPage.goToUrl(Constant.Urls.BELARUS_RAILWAY_NAIN_PAGE_URL);
-        RwHeader.typeText(RwHeader.HEADER_SEARCH_BOX, RwGeneralSearchResultListPage.CITY_TEXT_VALUE);
-        RwHeader.clickTheElement(RwHeader.HEADER_SEARCH_SUBMIT_BUTTON);
+        rwMainPage.
+                goToUrl(Constant.Urls.BELARUS_RAILWAY_NAIN_PAGE_URL);
+        rwHeader.
+                typeText(rwHeader.getHeaderSearchBox(), RwGeneralSearchResultListPage.CITY_TEXT_VALUE);
+        rwHeader.
+                clickTheElement(rwHeader.getHeaderSearchSubmitButton());
         String actualUriOfGeneralSearchResultPage = CommonActions.getDriver().getCurrentUrl();
         RwGeneralSearchResultListPage.CITY_TEXT_VALUE = URLEncoder.encode(RwGeneralSearchResultListPage.CITY_TEXT_VALUE, StandardCharsets.UTF_8);
-        String cuttedUriToLastWordsAccordingToSearch = actualUriOfGeneralSearchResultPage.
-                substring(actualUriOfGeneralSearchResultPage.length() - RwGeneralSearchResultListPage.CITY_TEXT_VALUE.length());
+        String cuttedUriToLastWordsAccordingToSearch =
+                actualUriOfGeneralSearchResultPage.
+                substring(actualUriOfGeneralSearchResultPage.length() -
+                RwGeneralSearchResultListPage.CITY_TEXT_VALUE.length());
         Assert.assertEquals(cuttedUriToLastWordsAccordingToSearch, RwGeneralSearchResultListPage.CITY_TEXT_VALUE);
-        RwGeneralSearchResultListPage.assertElementsAreDisplayed(RwGeneralSearchResultListPage.GENERAL_SEARCH_RESULT_PREVIEW_TITLE_LIST);
+        rwGeneralSearchResultListPage.assertElementsAreDisplayed(rwGeneralSearchResultListPage.getGeneralSearchResultPreviewTitleList());
 
 /** Requirement: Print in the console prompt the list of elements text.*/
-        List<WebElement> allTitlesToConsole = CommonActions.getDriver().findElements(RwGeneralSearchResultListPage.GENERAL_SEARCH_RESULT_PREVIEW_TITLE_LIST);
-        Iterator<WebElement> itr = allTitlesToConsole.iterator();
-        while(itr.hasNext()) {
-            System.out.println(itr.next().getText());
+        List<WebElement> allTitlesToConsole = CommonActions.getDriver().findElements(rwGeneralSearchResultListPage.getGeneralSearchResultPreviewTitleList());
+        for (WebElement element : allTitlesToConsole) {
+            System.out.println(element.getText());
         }
     }
 }

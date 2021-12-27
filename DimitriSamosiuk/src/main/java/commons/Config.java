@@ -24,5 +24,4 @@ public class Config {
      * and DimitriSamosiuk/../allure-results
      **/
     public static final Boolean CLEAR_TEST_REPORT_AND_SCREENSHOT_DIRECTORY = false;
-
 }

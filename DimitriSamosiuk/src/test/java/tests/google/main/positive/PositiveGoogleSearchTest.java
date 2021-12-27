@@ -10,7 +10,9 @@ import tests.base.BaseTest;
 
 
 public class PositiveGoogleSearchTest extends BaseTest {
-
+    GoogleMainPage googleMainPage = new GoogleMainPage(getDriver());
+    GoogleResultListPage googleResultListPage = new GoogleResultListPage(getDriver());
+    RwMainPage rwMainPage = new RwMainPage(getDriver());
     @Test(priority = 3)
     @Description("Requirements: https://clck.ru/ZXihb")
     @Epic("RW001")
@@ -21,10 +23,15 @@ public class PositiveGoogleSearchTest extends BaseTest {
     @Severity(SeverityLevel.TRIVIAL)
 
     public void searchTheRwByMainPageUsingGoogleSearchTest() {
-        GoogleMainPage.goToUrl(Constant.Urls.GOOGLE_MAIN_PAGE_URL);
-        GoogleMainPage.typeText(GoogleMainPage.GOOGLE_SEARCH_BOX_INPUT, GoogleMainPage.SEARCH_BOX_TEXT_FOR_INPUT);
-        GoogleMainPage.clickTheElement(GoogleMainPage.SEARCH_IN_GOOGLE_SUBMIT_BUTTON);
-        GoogleResultListPage.clickTheElement(GoogleResultListPage.SEARCH_RESULT_TITLE_LINK_LIST);
-        RwMainPage.assertElementIsDisplayed(RwMainPage.TRAIN_SEARCH_TEXT_FIELD_FROM);
+        googleMainPage.
+                goToUrl(Constant.Urls.GOOGLE_MAIN_PAGE_URL);
+        googleMainPage.
+                typeText(googleMainPage.getGoogleSearchBoxInput(), googleMainPage.getSearchBoxTextForInput());
+        googleMainPage.
+                clickTheElement(googleMainPage.getSearchInGoogleSubmitButton());
+        googleMainPage.
+                clickTheElement(googleResultListPage.getSearchResultTitleLinkList());
+        rwMainPage.
+                assertElementIsDisplayed(rwMainPage.getTrainSearchTextFieldFrom());
     }
 }

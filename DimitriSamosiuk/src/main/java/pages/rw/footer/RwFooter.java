@@ -6,8 +6,11 @@ import pages.base.BasePage;
 import java.text.SimpleDateFormat;
 
 public class RwFooter extends BasePage {
-    public static final By COPYRIGHT_ON_THE_FOOTER = By.xpath("//div[@class='copyright' and contains (text(), '© 2021 Belarusian Railway')]");
+    public RwFooter(WebDriver driver) {
+        super(driver);
+    }
 
+    private final By COPYRIGHT_ON_THE_FOOTER = By.xpath("//div[@class='copyright' and contains (text(), '© 2021 Belarusian Railway')]");
     /*** A method to change the year to current for copuright text and following test */
     public static String getExpectedTextOfCopyright(){
     java.util.Calendar CalendarForCopyright = java.util.Calendar.getInstance();
@@ -15,8 +18,7 @@ public class RwFooter extends BasePage {
     String expectedYearOfCopyright = dateFormatYyyy.format(CalendarForCopyright.getTime());
         return "© "+expectedYearOfCopyright+" Belarusian Railway";
     }
-
-    public RwFooter(WebDriver driver) {
-        super(driver);
+    public By getCopyrightOnTheFooter() {
+        return COPYRIGHT_ON_THE_FOOTER;
     }
 }

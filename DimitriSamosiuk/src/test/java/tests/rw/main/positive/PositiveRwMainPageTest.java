@@ -9,8 +9,13 @@ import pages.rw.header.RwHeader;
 import pages.rw.main.RwMainPage;
 import tests.base.BaseTest;
 
+import static pages.rw.footer.RwFooter.getExpectedTextOfCopyright;
+
 
 public class PositiveRwMainPageTest extends BaseTest {
+RwMainPage rwMainPage = new RwMainPage(getDriver());
+RwHeader rwHeader = new RwHeader(getDriver());
+RwFooter rwFooter = new RwFooter(getDriver());
 
     @Test(priority = 2)
     @Description("Requirements: https://clck.ru/ZXihb")
@@ -21,8 +26,10 @@ public class PositiveRwMainPageTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
 
     public void switchToEnglishLanguageTest() {
-        RwMainPage.goToUrl(Constant.Urls.BELARUS_RAILWAY_NAIN_PAGE_URL);
-        RwMainPage.clickTheElement(RwHeader.SWITCH_TO_ENGLISH);
+        rwMainPage.
+                goToUrl(Constant.Urls.BELARUS_RAILWAY_NAIN_PAGE_URL);
+        rwMainPage.
+                clickTheElement(rwHeader.getSwitchToEnglish());
     }
 
     @Test(priority = 3)
@@ -33,7 +40,8 @@ public class PositiveRwMainPageTest extends BaseTest {
     @Severity(SeverityLevel.TRIVIAL)
 
     public void countTheEnglishNewsBlockListTest() {
-        RwMainPage.checkTheNewsCountIsEqualOrHigherThanConstant(RwMainPage.MAIN_PAGE_NEWS_MODULE_WITH_NEWS_LIST);
+        rwMainPage.
+                checkTheNewsCountIsEqualOrHigherThanConstant(rwMainPage.getMainPageNewsModuleWithNewsList());
     }
 
     @Test(priority = 3)
@@ -44,8 +52,8 @@ public class PositiveRwMainPageTest extends BaseTest {
     @Severity(SeverityLevel.TRIVIAL)
 
     public void checkTheEnglishCopyrightTextTest() {
-        String actualTextOfCopyrightElement = find(RwFooter.COPYRIGHT_ON_THE_FOOTER).getText();
-        Assert.assertEquals((actualTextOfCopyrightElement.substring(0, 25)), RwFooter.getExpectedTextOfCopyright());
+        String actualTextOfCopyrightElement = find(rwFooter.getCopyrightOnTheFooter()).getText();
+        Assert.assertEquals((actualTextOfCopyrightElement.substring(0, 25)), getExpectedTextOfCopyright());
     }
 
     @Test(priority = 2)
@@ -57,6 +65,6 @@ public class PositiveRwMainPageTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
 
     public void checkTheNavigationHeaderBarElementsTest() {
-        assertElementsAreDisplayed(RwHeader.HEADER_BUTTON_LIST);
+        assertElementsAreDisplayed(rwHeader.getHeaderButtonList());
     }
 }
