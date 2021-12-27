@@ -1,6 +1,6 @@
 package tests.google.main.positive;
 
-import constants.Constant;
+import com.codeborne.selenide.Condition;
 import io.qameta.allure.*;
 import org.testng.annotations.Test;
 import pages.google.GoogleMainPage;
@@ -8,11 +8,13 @@ import pages.google.GoogleResultListPage;
 import pages.rw.main.RwMainPage;
 import tests.base.BaseTest;
 
+import static com.codeborne.selenide.Selenide.open;
+
 
 public class PositiveGoogleSearchTest extends BaseTest {
-    GoogleMainPage googleMainPage = new GoogleMainPage(getDriver());
-    GoogleResultListPage googleResultListPage = new GoogleResultListPage(getDriver());
-    RwMainPage rwMainPage = new RwMainPage(getDriver());
+    GoogleMainPage googleMainPage = new GoogleMainPage();
+    GoogleResultListPage googleResultListPage = new GoogleResultListPage();
+    RwMainPage rwMainPage = new RwMainPage();
     @Test(priority = 3)
     @Description("Requirements: https://clck.ru/ZXihb")
     @Epic("RW001")
@@ -23,15 +25,19 @@ public class PositiveGoogleSearchTest extends BaseTest {
     @Severity(SeverityLevel.TRIVIAL)
 
     public void searchTheRwByMainPageUsingGoogleSearchTest() {
-        googleMainPage.
-                goToUrl(Constant.Urls.GOOGLE_MAIN_PAGE_URL);
-        googleMainPage.
-                typeText(googleMainPage.getGoogleSearchBoxInput(), googleMainPage.getSearchBoxTextForInput());
-        googleMainPage.
-                clickTheElement(googleMainPage.getSearchInGoogleSubmitButton());
-        googleMainPage.
-                clickTheElement(googleResultListPage.getSearchResultTitleLinkList());
+        open(googleMainPage.getGoogleUrl());
+        googleMainPage
+                .getGoogleSearchBoxInput()
+                .setValue(googleMainPage.getSearchBoxTextForInput());
+        googleMainPage
+                .getSearchInGoogleSubmitButton()
+                .click();
+        googleResultListPage
+                .getSearchResultTitleLinkList().
+                findBy(Condition.text("Белорусская железная дорога"))
+                .click();
         rwMainPage.
-                assertElementIsDisplayed(rwMainPage.getTrainSearchTextFieldFrom());
+                getTrainSearchTextFieldFrom().
+                shouldBe(Condition.visible);
     }
 }

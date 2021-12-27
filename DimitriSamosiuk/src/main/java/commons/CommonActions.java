@@ -1,39 +1,52 @@
 package commons;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.testng.Assert;
-import java.util.concurrent.TimeUnit;
-import static commons.Config.PLATFORM_AND_BROWSER;
-import static constants.Constant.TimeoutVariables.IMPLICIT_WAIT;
-
-
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.apache.commons.io.FileUtils;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
+import java.io.File;
+import java.io.IOException;
+import static commons.Config.*;
 public class CommonActions {
-    private static WebDriver driver;
 
-    /**
-     *This is a browser setup methods.
-     * Choose your properties only via file "src/main/java/commons/Config"
-     **/
+    /** All changes must be provided only in src/main/java/commons/Config */
+
     static {
-        switch (PLATFORM_AND_BROWSER) {
-            case "CHROME_WINDOWS":
-                driver = new ChromeDriver();
-                break;
-            case "FIREFOX_WINDOWS":
-                driver = new FirefoxDriver();
-                break;
-            case "INTERNET_EXPLORER_WINDOWS":
-                driver = new InternetExplorerDriver();
-            default:
-                Assert.fail("Incorrect browser name. Choose name of browser in src/main/java/commons/Config Browser name for now is: " + PLATFORM_AND_BROWSER);
-        }
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(IMPLICIT_WAIT, TimeUnit.SECONDS);
+        Configuration.holdBrowserOpen = HOLD_BROWSER_OPEN;
+        Configuration.browser = BROWSER_NAME;
     }
-    public static WebDriver getDriver(){
-        return driver;
+
+    @BeforeSuite
+    static void setupAllureReports() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
+                .screenshots(MAKE_SCREENSHOTS_FOR_ALLURE)
+                .savePageSource(MAKE_ALLURE_REPORTS)
+        );
+    }
+
+    @BeforeTest
+    public void clearAllReportsTrigger() throws IOException {
+        File allureResultFolder = new File(".allure-results");
+        File SelenideReportFolder = new File(".build/reports");
+        if (allureResultFolder.isDirectory() || SelenideReportFolder.isDirectory() && CLEAR_TEST_REPORT_AND_SCREENSHOT_DIRECTORY) {
+            FileUtils.deleteDirectory(new File(String.valueOf(allureResultFolder)));
+            FileUtils.deleteDirectory(new File(String.valueOf(SelenideReportFolder)));
+        }
+    }
+    @AfterSuite
+    public void clearCookiesTrigger() {
+        if (CLEAR_COOKIES_AND_LOCAL_STORAGE) {
+            try {
+                Selenide.clearBrowserCookies();
+                Selenide.clearBrowserLocalStorage();
+                Selenide.executeJavaScript("window.sessionStoreage.clear()");
+            } catch (Exception e) {
+                System.out.println("Fail to to clearCookiesAndLocalStorage()" + e);
+            }
+        }
     }
 }

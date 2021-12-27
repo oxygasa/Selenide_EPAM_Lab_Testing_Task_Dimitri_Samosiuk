@@ -1,18 +1,17 @@
 package pages.rw.train_result;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import com.codeborne.selenide.ElementsCollection;
 import pages.base.BasePage;
+import static com.codeborne.selenide.Selenide.$$x;
 
 public class RwGeneralSearchResultListPage extends BasePage {
-    public RwGeneralSearchResultListPage(WebDriver driver) {
-        super(driver);
-    }
     public static final String[] RANDOM_SYMBOLS_LIST = {"!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "-", "_", "+", "=", ">", "{", "}", "\"", ":", ";"};
-    public static String CITY_TEXT_VALUE = "Санкт-Петербург";
-    private final By GENERAL_SEARCH_RESULT_PREVIEW_TITLE_LIST = By.xpath("//li//div[@class='search-preview']/preceding-sibling::h3/a");
-
-    public By getGeneralSearchResultPreviewTitleList() {
+    private final ElementsCollection GENERAL_SEARCH_RESULT_PREVIEW_TITLE_LIST = $$x("//li//div[@class='search-preview']/preceding-sibling::h3/a");
+    public String getCityTextValue() {
+        return "Санкт-Петербург";
+    }
+    public ElementsCollection getGeneralSearchResultPreviewTitleList() {
         return GENERAL_SEARCH_RESULT_PREVIEW_TITLE_LIST;
     }
 }
+

@@ -1,37 +1,36 @@
 package pages.rw.header;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 import pages.base.BasePage;
+import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Selenide.*;
 
 public class RwHeader extends BasePage {
-    public RwHeader(WebDriver driver) {
-        super(driver);
-    }
     /**
      * Message to the mentor
      * Requirements: Double interpretation about “Timetable” section. The name has been changed to "Tickets".
      * "Timetable" section is presented only on the Main Page body.
      */
-    private final By SWITCH_TO_ENGLISH = By.xpath("//a[@href='/en/']");
-    private final By HEADER_BUTTON_LIST = By.xpath("//table[@class='menu-items']//b");
-    private final By HEADER_SEARCH_BOX = By.id("searchinp");
-    private final By HEADER_SEARCH_SUBMIT_BUTTON = By.xpath("//div[@class='top-search']//button[@type='submit']");
-    private final By RW_COMPANY_LOGO = By.className("logo-png");
+    private final SelenideElement SWITCH_TO_ENGLISH = $x("//a[@href='/en/']");
+    private final ElementsCollection HEADER_BUTTON_LIST = $$x("//table[@class='menu-items']//b");
+    private final SelenideElement HEADER_SEARCH_BOX = $(byId("searchinp"));
+    private final SelenideElement HEADER_SEARCH_SUBMIT_BUTTON = $x("//div[@class='top-search']//button[@type='submit']");
+    private final SelenideElement RW_COMPANY_LOGO = $(byClassName("logo-png"));
 
-    public By getSwitchToEnglish() {
+    public SelenideElement getSwitchToEnglish() {
         return SWITCH_TO_ENGLISH;
     }
-    public By getHeaderButtonList() {
+    public ElementsCollection getHeaderButtonList() {
         return HEADER_BUTTON_LIST;
     }
-    public By getHeaderSearchBox() {
+    public SelenideElement getHeaderSearchBox() {
         return HEADER_SEARCH_BOX;
     }
-    public By getHeaderSearchSubmitButton() {
+    public SelenideElement getHeaderSearchSubmitButton() {
         return HEADER_SEARCH_SUBMIT_BUTTON;
     }
-    public By getRwCompanyLogo() {
+    public SelenideElement getRwCompanyLogo() {
         return RW_COMPANY_LOGO;
     }
 }

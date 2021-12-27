@@ -1,6 +1,7 @@
 package tests.rw.main.positive;
 
-import constants.Constant;
+import com.codeborne.selenide.CollectionCondition;
+import com.codeborne.selenide.Condition;
 import io.qameta.allure.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -8,14 +9,14 @@ import pages.rw.footer.RwFooter;
 import pages.rw.header.RwHeader;
 import pages.rw.main.RwMainPage;
 import tests.base.BaseTest;
-
+import static com.codeborne.selenide.Selenide.open;
 import static pages.rw.footer.RwFooter.getExpectedTextOfCopyright;
 
 
 public class PositiveRwMainPageTest extends BaseTest {
-RwMainPage rwMainPage = new RwMainPage(getDriver());
-RwHeader rwHeader = new RwHeader(getDriver());
-RwFooter rwFooter = new RwFooter(getDriver());
+RwMainPage rwMainPage = new RwMainPage();
+RwHeader rwHeader = new RwHeader();
+RwFooter rwFooter = new RwFooter();
 
     @Test(priority = 2)
     @Description("Requirements: https://clck.ru/ZXihb")
@@ -26,10 +27,13 @@ RwFooter rwFooter = new RwFooter(getDriver());
     @Severity(SeverityLevel.NORMAL)
 
     public void switchToEnglishLanguageTest() {
-        rwMainPage.
-                goToUrl(Constant.Urls.BELARUS_RAILWAY_NAIN_PAGE_URL);
-        rwMainPage.
-                clickTheElement(rwHeader.getSwitchToEnglish());
+        open(rwMainPage.getRwUrl());
+        rwHeader
+                .getSwitchToEnglish()
+                .click();
+        rwMainPage
+                .getOnlineScheduleLink()
+                .shouldHave(Condition.text("Online-schedule"));
     }
 
     @Test(priority = 3)
@@ -40,8 +44,8 @@ RwFooter rwFooter = new RwFooter(getDriver());
     @Severity(SeverityLevel.TRIVIAL)
 
     public void countTheEnglishNewsBlockListTest() {
-        rwMainPage.
-                checkTheNewsCountIsEqualOrHigherThanConstant(rwMainPage.getMainPageNewsModuleWithNewsList());
+        rwMainPage
+                .checkTheNewsCountIsEqualOrHigherThanConstant(rwMainPage.getMainPageNewsModuleWithNewsList());
     }
 
     @Test(priority = 3)
@@ -52,7 +56,9 @@ RwFooter rwFooter = new RwFooter(getDriver());
     @Severity(SeverityLevel.TRIVIAL)
 
     public void checkTheEnglishCopyrightTextTest() {
-        String actualTextOfCopyrightElement = find(rwFooter.getCopyrightOnTheFooter()).getText();
+        String actualTextOfCopyrightElement = rwFooter
+                .getCopyrightOnTheFooter()
+                .getText();
         Assert.assertEquals((actualTextOfCopyrightElement.substring(0, 25)), getExpectedTextOfCopyright());
     }
 
@@ -65,6 +71,9 @@ RwFooter rwFooter = new RwFooter(getDriver());
     @Severity(SeverityLevel.NORMAL)
 
     public void checkTheNavigationHeaderBarElementsTest() {
-        assertElementsAreDisplayed(rwHeader.getHeaderButtonList());
+        open(rwMainPage.getRwUrl());
+        rwHeader
+                .getHeaderButtonList()
+                .shouldBe(CollectionCondition.sizeGreaterThan(5));
     }
 }

@@ -1,24 +1,24 @@
 package pages.google;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import static com.codeborne.selenide.Selectors.byClassName;
+import static com.codeborne.selenide.Selectors.byName;
+import static com.codeborne.selenide.Selenide.*;
+import com.codeborne.selenide.SelenideElement;
 import pages.base.BasePage;
 
 public class GoogleMainPage extends BasePage {
-
-    public GoogleMainPage(WebDriver driver) {
-        super(driver);
+    private final SelenideElement GOOGLE_SEARCH_BOX_INPUT = $(byName("q"));
+    private final SelenideElement SEARCH_IN_GOOGLE_SUBMIT_BUTTON = $(byClassName("gNO89b"));
+    public String getGoogleUrl() {
+        return "https://google.com";
     }
-    private final By GOOGLE_SEARCH_BOX_INPUT = By.name("q");
-    private final By SEARCH_IN_GOOGLE_SUBMIT_BUTTON = By.className("gNO89b");
-
     public String getSearchBoxTextForInput() {
         return "белорусская железная дорога";
     }
-    public By getGoogleSearchBoxInput() {
+    public SelenideElement getGoogleSearchBoxInput() {
         return GOOGLE_SEARCH_BOX_INPUT;
     }
-    public By getSearchInGoogleSubmitButton() {
+    public SelenideElement getSearchInGoogleSubmitButton() {
         return SEARCH_IN_GOOGLE_SUBMIT_BUTTON;
     }
 }

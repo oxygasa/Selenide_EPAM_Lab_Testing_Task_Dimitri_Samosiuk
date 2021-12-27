@@ -1,27 +1,30 @@
 package commons;
 
 public class Config {
-
     /**
-     * Specify the browser name and operating system for tests:
-     * CHROME_WINDOWS
-     * FIREFOX_WINDOWS
-     * INTERNET_EXPLORER_WINDOWS
+     * Change the browser name for cross browser testing. Available:
+     * chrome
+     * firefox
+     * ie
+     * edge
+     * opera
      **/
-    public static final String PLATFORM_AND_BROWSER = "CHROME_WINDOWS";
-    /** Clear all cookies and cache after each interation.*/
-    public static final Boolean CLEAR_COOKIES = true;
+    public static final String BROWSER_NAME = "firefox";
+    /** Clear all cookies and cache after each iteration.*/
+    public static final Boolean CLEAR_COOKIES_AND_LOCAL_STORAGE = false;
     /** To keep browser open after all tests.*/
-    public static final Boolean HOLD_BROWSER_OPEN = false;
+    public static final Boolean HOLD_BROWSER_OPEN = true;
     /**
-     * To make a screenshot after each test.
-     * Screenshots are located at DimitriQA/build/screenshots
+     * Selenide makes screenshots automatically after tests fail.
+     * Screenshots of the failed tests are located ./build/reports by default
+     * Screenshots path can be changed here.
      **/
-    public static final Boolean MAKE_SCREENSHOT_FOR_ALLURE = true;
+    public static final Boolean MAKE_ALLURE_REPORTS = true;
+    public static final Boolean MAKE_SCREENSHOTS_FOR_ALLURE = false;
     /**
-     * After each run the reports and screenshots will be deleted.
-     * The target folders for clearing are DimitriSamosiuk/build
-     * and DimitriSamosiuk/../allure-results
+     * Before each run the reports and screenshots can stay deleted.
+     * ".build/reports" and .DimitriSamosiuk/../allure-results
      **/
     public static final Boolean CLEAR_TEST_REPORT_AND_SCREENSHOT_DIRECTORY = false;
+
 }
