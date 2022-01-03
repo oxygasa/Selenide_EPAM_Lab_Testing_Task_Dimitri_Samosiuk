@@ -9,11 +9,9 @@ import pages.rw.header.RwHeader;
 import pages.rw.main.RwMainPage;
 import pages.rw.train_result.RwGeneralSearchResultListPage;
 import tests.base.BaseTest;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
-
 import static com.codeborne.selenide.Selenide.open;
 
 
@@ -30,9 +28,9 @@ public class PositiveRwGeneralSearchTest extends BaseTest {
             "general search text box.")
     @Severity(SeverityLevel.NORMAL)
 
-    public void checkingReactionOnInputCharacters() throws UnsupportedEncodingException {
+    public void checkingReactionOnInputCharacters() {
+        open(rwMainPage.getRwUrl());
         for (int i = 0; i < RwGeneralSearchResultListPage.RANDOM_SYMBOLS_LIST.length; i++) {
-            open(rwMainPage.getRwUrl());
             rwHeader
                     .getHeaderSearchBox()
                     .setValue(RwGeneralSearchResultListPage.RANDOM_SYMBOLS_LIST[i]);
@@ -65,24 +63,16 @@ public class PositiveRwGeneralSearchTest extends BaseTest {
         open(rwMainPage.getRwUrl());
        rwHeader
                .getHeaderSearchBox()
-               .setValue(rwGeneralSearchResultListPage.getCityTextValue());
+               .setValue(rwGeneralSearchResultListPage.setCityTextValue());
         rwHeader
                 .getHeaderSearchSubmitButton()
                 .click();
-        String actualUriOfGeneralSearchResultPage = WebDriverRunner.source();
-                URLEncoder.encode(rwGeneralSearchResultListPage.getCityTextValue(), StandardCharsets.UTF_8);
-        String cutUriToLastWordsAccordingToSearch =
-                actualUriOfGeneralSearchResultPage
-                .substring(actualUriOfGeneralSearchResultPage.length() -
-                rwGeneralSearchResultListPage.getCityTextValue().length());
-        Assert.assertEquals(cutUriToLastWordsAccordingToSearch, rwGeneralSearchResultListPage.getCityTextValue());
         rwGeneralSearchResultListPage
-                .getGeneralSearchResultPreviewTitleList().shouldHave(CollectionCondition.sizeGreaterThanOrEqual(1));
-
+                .getGeneralSearchArticlesResultTitleList().shouldHave(CollectionCondition.size(15));
 /** Requirement: Print in the console prompt the list of elements text.*/
             System.out.println(Arrays
                     .toString(rwGeneralSearchResultListPage
-                    .getGeneralSearchResultPreviewTitleList()
+                    .getGeneralSearchArticlesResultTitleList()
                     .toArray()));
         }
     }
