@@ -8,8 +8,10 @@ import org.apache.commons.io.FileUtils;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
+
 import java.io.File;
 import java.io.IOException;
+
 import static commons.Config.*;
 public class CommonActions {
 

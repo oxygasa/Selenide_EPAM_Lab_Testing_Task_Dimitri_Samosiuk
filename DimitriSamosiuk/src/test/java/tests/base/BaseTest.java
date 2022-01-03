@@ -14,11 +14,9 @@ public class BaseTest extends BasePage {
 
     @BeforeTest
     public void clearAllReportsBeforeStartEachTest() throws IOException {
-        File buildFolder = new File("./DimitriSamosiuk/build/");
-        File allureResultFolder = new File(".allure-results");
+        File buildFolder = new File(".build");
         if (buildFolder.isDirectory() && CLEAR_TEST_REPORT_AND_SCREENSHOT_DIRECTORY) {
             FileUtils.deleteDirectory(new File(String.valueOf(buildFolder)));
-            FileUtils.deleteDirectory(new File(String.valueOf(allureResultFolder)));
         }
     }
 
