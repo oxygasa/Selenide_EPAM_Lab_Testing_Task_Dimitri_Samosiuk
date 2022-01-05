@@ -9,9 +9,12 @@ import pages.rw.header.RwHeader;
 import pages.rw.main.RwMainPage;
 import pages.rw.train_result.RwGeneralSearchResultListPage;
 import tests.base.BaseTest;
+
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+
 import static com.codeborne.selenide.Selenide.open;
 
 
@@ -28,25 +31,17 @@ public class PositiveRwGeneralSearchTest extends BaseTest {
             "general search text box.")
     @Severity(SeverityLevel.NORMAL)
 
-    public void checkingReactionOnInputCharacters() {
-        open(rwMainPage.getRwUrl());
+    public void checkingReactionOnInputCharacters() throws UnsupportedEncodingException {
         for (int i = 0; i < RwGeneralSearchResultListPage.RANDOM_SYMBOLS_LIST.length; i++) {
-            rwHeader
-                    .getHeaderSearchBox()
-                    .setValue(RwGeneralSearchResultListPage.RANDOM_SYMBOLS_LIST[i]);
-            rwHeader
-                    .getHeaderSearchSubmitButton()
-                    .click();
-            String actualUriOfGeneralSearchResultPage = WebDriverRunner.source();
-            String actualCharacterNumberParse =
-                    actualUriOfGeneralSearchResultPage
-                    .substring(actualUriOfGeneralSearchResultPage.length() - 1);
-            actualCharacterNumberParse =
-                    URLEncoder.encode(actualCharacterNumberParse, StandardCharsets.UTF_8);
-            RwGeneralSearchResultListPage.RANDOM_SYMBOLS_LIST[i] =
-                    URLEncoder.encode(RwGeneralSearchResultListPage.RANDOM_SYMBOLS_LIST[i], StandardCharsets.UTF_8);
-            String expectedCharacterNumberParse =
-                    RwGeneralSearchResultListPage.RANDOM_SYMBOLS_LIST[i].substring(RwGeneralSearchResultListPage.RANDOM_SYMBOLS_LIST[i].length() - 1);
+            open(rwMainPage.getRwUrl());
+            rwHeader.getHeaderSearchBox().setValue(RwGeneralSearchResultListPage.RANDOM_SYMBOLS_LIST[i]);
+            rwHeader.getHeaderSearchSubmitButton().click();
+            String actualUriOfGeneralSearchResultPage = WebDriverRunner.getWebDriver().getCurrentUrl();
+            String cuttedUriThreeLastCharacters = actualUriOfGeneralSearchResultPage.substring(actualUriOfGeneralSearchResultPage.length() - 1);
+            String actualCharacterNumberParse = String.valueOf(cuttedUriThreeLastCharacters);
+            actualCharacterNumberParse = URLEncoder.encode(actualCharacterNumberParse, StandardCharsets.UTF_8);
+            RwGeneralSearchResultListPage.RANDOM_SYMBOLS_LIST[i] = URLEncoder.encode(RwGeneralSearchResultListPage.RANDOM_SYMBOLS_LIST[i], StandardCharsets.UTF_8);
+            String expectedCharacterNumberParse = RwGeneralSearchResultListPage.RANDOM_SYMBOLS_LIST[i].substring(RwGeneralSearchResultListPage.RANDOM_SYMBOLS_LIST[i].length() - 1);
             Assert.assertEquals(actualCharacterNumberParse, expectedCharacterNumberParse);
         }
     }
