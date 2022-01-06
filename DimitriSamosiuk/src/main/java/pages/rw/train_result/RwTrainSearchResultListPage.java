@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Selenide.$$x;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class RwTrainSearchResultListPage extends BasePage {
-    private final ElementsCollection TRAIN_ROUTE_LIST_PAGE_TRAIN_ROUTE_TITLE = $$x("//div[@id='sch-route']//span[@class='train-route']");
+    private final ElementsCollection TRAIN_ROUTE_LIST_PAGE_TRAIN_ROUTE_TITLE = $$x("//div[@class ='sch-table__body js-sort-body']//span[@class='train-route']");
     private final ElementsCollection TRAIN_ROUTE_LIST_PAGE_ROUTE_TIME = $$x("//div[contains(@class,'train-from-time')]");
     private final SelenideElement TRAIN_ROUTE_PREVIEW_PAGE_TRAIN_ROUTE_TITLE = $x("//div[@class='sch-title__title h2']");
     private final SelenideElement TRAIN_ROUTE_PREVIEW_PAGE_DAYS_OF_ROUTE = $x("//div[@class='sch-title__descr']");

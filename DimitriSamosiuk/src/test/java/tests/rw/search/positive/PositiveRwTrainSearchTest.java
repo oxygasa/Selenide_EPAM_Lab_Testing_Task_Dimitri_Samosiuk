@@ -56,7 +56,7 @@ Stream<String> allTrainsToConsole = rwTrainSearchResultListPage.getTrainRouteLis
                 .shouldBe(Condition.visible);
         rwTrainSearchResultListPage
                 .getTrainRoutePreviewPageDaysOfRoute()
-                .shouldBe(Condition.readonly);
+                .shouldBe(Condition.visible);
         rwHeader
                 .getRwCompanyLogo().click();
         rwMainPage
